@@ -11,7 +11,7 @@ Stable Diffusion is an advanced type of generative AI model that specializes in 
     
 The process begins with a pattern of random noise – essentially a meaningless, static-like image. The model then performs a series of steps (or iterations) to refine this noise into an image. In each step, it alters the pattern slightly, guided by its training to make these changes in a way that gradually forms a coherent image. Like other deep learning models, Stable Diffusion is trained on a large dataset of images and their corresponding descriptions. It learns how certain textual descriptions correlate with visual patterns.
 
-![Diffusion Process](<../content/images/Screenshot from 2024-01-29 15-32-34.png>)
+![Diffusion Process](</content/images/Screenshot from 2024-01-29 15-32-34.png>)
 
 The 'diffusion' in its name refers to the way it mimics the diffusion process in physics but in reverse. In nature, diffusion describes processes like ink dispersing in water, going from ordered to disordered. The model reverses this, going from disordered (random noise) to ordered (a structured image). During image generation, the model is 'conditioned' with text. This means it uses the text prompt to guide the transformation from noise to image, aiming to match the description.
 
@@ -74,7 +74,7 @@ python main.py
 ```
 
 #### Welcome to the trippy world of Diffusion (http://127.0.0.1:8188/)
-![ComfyUI](<../content/images/Screenshot from 2024-01-29 12-44-19.png>)
+![ComfyUI](</content/images/Screenshot from 2024-01-29 12-44-19.png>)
 
 #### Downloading Model
 Download model [OpenDalleV1.1](https://huggingface.co/dataautogpt3/OpenDalleV1.1/tree/main) from huggingface. We need to download the 6.94 GB `OpenDalleV1.1.safetensors` file only for inference. Place the model in `ComfyUI/models/checkpoints/` directory, click `Refresh` in ComfyUI and the model should apear in the Load Checkpoint node's dropdown list.
@@ -84,28 +84,28 @@ Download model [OpenDalleV1.1](https://huggingface.co/dataautogpt3/OpenDalleV1.1
 #### Running the pipline
 Click on `Queue Prompt` button in ComfyUI and this should generate the first image for you!
 
-![First Image](<../content/images/Screenshot from 2024-01-29 12-44-52.png>)
+![First Image](</content/images/Screenshot from 2024-01-29 12-44-52.png>)
 
 #### But what exactly is happening here? 
 Let's go node by node here and try to understand the pipeline in detail. 
 
-![Alt text](<../content/images/Screenshot from 2024-01-29 12-48-51.png>)
+![Alt text](</content/images/Screenshot from 2024-01-29 12-48-51.png>)
 
 The very first node in the pipeline is Load Checkpoint, it loads the Model, CLIP and VAE and make it available for the CLIP text encoder, Sampler and the VAE Decoder. 
 
-![Alt text](<../content/images/Screenshot from 2024-01-29 12-49-13.png>)
+![Alt text](</content/images/Screenshot from 2024-01-29 12-49-13.png>)
 
 Next we have CLIP text encoder nodes, with the given CLIP the text is encoded and passed as conditioning to the Sampler. Notice, there are two CLIP encoders here, one is for the positive prompt and the other one is for the negative prompt. 
 
-![Alt text](<../content/images/Screenshot from 2024-01-29 12-49-34.png>)
+![Alt text](</content/images/Screenshot from 2024-01-29 12-49-34.png>)
 
 In parallel we are passing an empty latent image as well to the sampler, which will be decoded later into pixels after sampling. Ideally for SDXL models the latent image should have 1024x1024 resolution because the model is trained on 1024x1024 resolution and we will get better results if we do inference with the same resolution. In the next run we will update these values! Also the batch size is the number of images that we want to generate for the run. For each image in a batch the Sampler will have a different seed so that we can have multiple variations of the image with the same prompt. 
 
-![Alt text](<../content/images/Screenshot from 2024-01-29 12-49-48.png>)
+![Alt text](</content/images/Screenshot from 2024-01-29 12-49-48.png>)
 
 Next is the KSampler, the place where the magic happens! We link the model, positive and negative CLIP encoded prompts and the latent image to the Sampler input. Here the Sampler got quite a few parameters to play with. We will go in detail about these parameters in a later posts. Right now we leave them to default. Oh wait, we can do better! From the model card we can see the model publisher has given the best settings for sampler. `CFG Scale: 8 to 7, Steps: 60 to 70 steps for more detail, 35 steps for faster results, Sampler: DPM2 and Scheduler: Normal or Karras`. Lets update these settings in the next run as well. 
 
-![Alt text](<../content/images/Screenshot from 2024-01-29 12-50-01.png>)
+![Alt text](</content/images/Screenshot from 2024-01-29 12-50-01.png>)
 
 Last but not the least, we got VAE Decode to convert image from latent to pixels and finlay save the image using Save Image node.
 
@@ -114,17 +114,17 @@ Last but not the least, we got VAE Decode to convert image from latent to pixels
 Understanding and setting up every param we can, lets generate some images with the new settings and prompts!
 
 #### Results
-![Alt text](<../content/images/Screenshot from 2024-01-29 13-53-17.png>)
+![Alt text](</content/images/Screenshot from 2024-01-29 13-53-17.png>)
 
 This already looks so much better! Now lets try some exciting prompts to make it more spicy!!
 
-![Alt text](../content/images/ComfyUI_02015_.png)
+![Alt text](/content/images/ComfyUI_02015_.png)
 
-![Alt text](../content/images/ComfyUI_02105_.png)
+![Alt text](/content/images/ComfyUI_02105_.png)
 
-![Alt text](../content/images/ComfyUI_02106_.png)
+![Alt text](/content/images/ComfyUI_02106_.png)
 
-![Alt text](../content/images/ComfyUI_02113_.png)
+![Alt text](/content/images/ComfyUI_02113_.png)
 
 ### Next steps 
 - Can we control the generation of images? (ControlNet, OpenPose, Depth, LineArt)
