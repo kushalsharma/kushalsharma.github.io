@@ -7,9 +7,9 @@ permalink:        pretty
 
 # Setup
 title:            Kushal Sharma
-description:      'I work as Software developer at Flipkart in Bangalore.'
-url:              http://kushal.xyz
-baseurl:          http://kushal.xyz
+description:      'Software everything!'
+url:              https://kushalsharma.github.io
+baseurl:          https://kushalsharma.github.io
 logo:             /content/images/me.jpg
 
 author:
