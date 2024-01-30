@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to Stable Diffusion? 
+title: Stable Diffusion
 date: '2024-01-29'
 cover_image: /content/images/ComfyUI_02105_.png
 ---
@@ -30,19 +30,29 @@ The architecture of Stable Diffusion, a type of latent diffusion model (LDM) dev
 - **Conditional Generation**: Stable Diffusion can be conditioned on various inputs, including text. When text is used, the model employs a fixed, pretrained CLIP ViT text encoder.
 - **Function of CLIP**: This encoder transforms textual prompts into an embedding space, allowing the model to understand and interpret the text input. The resulting embeddings are then used to guide the denoising process in the U-Net, ensuring that the generated image aligns with the textual description.
 
-### Hands On (Dirty)
+### Hands On
 
 With some theoretical understanding let's try to generate some images and then deep dive into the math of things later!
 
 #### Pre-requisites for Experimentation:
-- **High-Performance Computing Hardware**: Utilize a machine equipped with a GPU for optimal speed (though CPU-only is possible but slower). My specs - i9 (20 core) CPU, 16GB of RAM with additional swap memory, and an RTX 3060 with 12GB VRAM, running on an Ubuntu OS.
+- **High-Performance Computing Hardware**: Utilize a machine equipped with a GPU for optimal speed (though CPU-only is possible but slower). 
+
+```
+Specs - 
+i9 CPU, 
+16GB of RAM with swap memory 
+RTX 3060 12GB VRAM
+Ubuntu OS (Windows 11 also works)
+```
 
 - **User-Friendly Interface for Model Interaction**: Instead of diving into code, we'll use ComfyUI. This interface simplifies the process, allowing for rapid, code-free experimentation with AI models.
 
 - **Accessing Stable Diffusion Models**: Start with open-source models available on platforms like Hugging Face. We'll focus on Stable Diffusion XL models, which are the latest and the fastest models till now.
 
 #### Installing ComfyUI
-- **Locating Installation Instructions**: Find specific OS instructions [here](https://github.com/comfyanonymous/ComfyUI#installing). This guide focuses on Linux.
+**Locating Installation Instructions**: Find specific OS instructions [here](https://github.com/comfyanonymous/ComfyUI#installing). 
+
+This guide focuses on Linux :
 - **Repository Cloning**: Clone the ComfyUI repository:
   ```shell
   git clone https://github.com/comfyanonymous/ComfyUI.git
@@ -119,16 +129,19 @@ Understanding and setting up every param we can, lets generate some images with 
 This already looks so much better! Now lets try some exciting prompts to make it more spicy!!
 
 ![Alt text](/content/images/ComfyUI_02015_.png)
+Super Closeup Portrait, action shot, Profoundly dark whitish meadow, glass flowers, Stains, space grunge style, Jeanne d'Arc wearing White Olive green used styled Cotton frock, Wielding thin silver sword, Sci-fi vibe, dirty, noisy, Vintage monk style, very detailed, hd
 
 ![Alt text](/content/images/ComfyUI_02105_.png)
+black fluffy gorgeous dangerous cat animal creature, large orange eyes, big fluffy ears, piercing gaze, full moon, dark ambiance, best quality, extremely detailed
 
 ![Alt text](/content/images/ComfyUI_02106_.png)
+an anime female general laughing, with a military cap, evil smile, sadistic, grim
 
 ![Alt text](/content/images/ComfyUI_02113_.png)
+cinematic film still of Kodak Motion Picture Film: (Sharp Detailed Image) An Oscar winning movie for Best Cinematography a woman in a kimono standing on a subway train in Japan Kodak Motion Picture Film Style, shallow depth of field, vignette, highly detailed, high budget, bokeh, cinemascope, moody, epic, gorgeous, film grain, grainy
 
 ### Next steps 
-- Can we control the generation of images? (ControlNet, OpenPose, Depth, LineArt)
-- Enhance features like face, hands and background. Upscale using Diffusion ?  
-- Animations!! (Hard and rewarding) :D 
+- Control the generation of images (ControlNet, OpenPose, Depth, LineArt)
+- Enhance features like face, hands and background. Upscale images.
+- Animations!! 
 
-Its just the tip of the iceberg! We will get into the depths of the math and the diffusion process along with it in the next post. Stay tuned if you got along! 
