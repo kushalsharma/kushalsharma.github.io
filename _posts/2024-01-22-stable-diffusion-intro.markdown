@@ -35,15 +35,9 @@ The architecture of Stable Diffusion, a type of latent diffusion model (LDM) dev
 With some theoretical understanding let's try to generate some images and then deep dive into the math of things later!
 
 #### Pre-requisites for Experimentation:
-- **High-Performance Computing Hardware**: Utilize a machine equipped with a GPU for optimal speed (though CPU-only is possible but slower). 
+- **High-Performance Computing Hardware**: Utilize a machine equipped with a GPU for optimal speed (though CPU-only is possible but slower). Specs - i9 CPU, 16GB of RAM with swap memory 
+RTX 3060 12GB VRAM, Ubuntu OS (Windows 11 also works)
 
-```
-Specs - 
-i9 CPU, 
-16GB of RAM with swap memory 
-RTX 3060 12GB VRAM
-Ubuntu OS (Windows 11 also works)
-```
 
 - **User-Friendly Interface for Model Interaction**: Instead of diving into code, we'll use ComfyUI. This interface simplifies the process, allowing for rapid, code-free experimentation with AI models.
 
@@ -130,6 +124,7 @@ This already looks so much better! Now lets try some exciting prompts to make it
 
 ![Alt text](/content/images/ComfyUI_02015_.png)
 Super Closeup Portrait, action shot, Profoundly dark whitish meadow, glass flowers, Stains, space grunge style, Jeanne d'Arc wearing White Olive green used styled Cotton frock, Wielding thin silver sword, Sci-fi vibe, dirty, noisy, Vintage monk style, very detailed, hd
+
 
 ![Alt text](/content/images/ComfyUI_02105_.png)
 black fluffy gorgeous dangerous cat animal creature, large orange eyes, big fluffy ears, piercing gaze, full moon, dark ambiance, best quality, extremely detailed
