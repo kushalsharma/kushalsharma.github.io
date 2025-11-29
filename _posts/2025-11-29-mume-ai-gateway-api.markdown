@@ -1008,10 +1008,6 @@ curl https://mume.ai/api/v1/chat/completions \
 
 ---
 
-<div align="center">
-
 **Built with ❤️ by the Mume team**
 
 *One API. Every model. Unlimited possibilities.*
-
-</div>
