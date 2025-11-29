@@ -5,7 +5,6 @@ date: '2025-11-29'
 cover_image: /content/images/post_1.jpg
 ---
 
-
 > **Your unified gateway to the world's most powerful AI models**
 
 Mume Gateway provides a single, elegant API to access AI from OpenAI, Anthropic, Google, Mistral, and more — all through the familiar OpenAI SDK interface you already know and love.
