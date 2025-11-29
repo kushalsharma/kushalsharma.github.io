@@ -1,11 +1,10 @@
 ---
 layout: post
-title: Mume AI Gateway API
+title: 🚀 Mume AI Gateway API
 date: '2025-11-29'
 cover_image: /content/images/post_1.jpg
 ---
 
-# 🚀 Mume AI Gateway API
 
 > **Your unified gateway to the world's most powerful AI models**
 
