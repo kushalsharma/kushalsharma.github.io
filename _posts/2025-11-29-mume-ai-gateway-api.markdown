@@ -1,9 +1,4 @@
----
-layout: post
-title: 🚀 Mume AI Gateway API
-date: '2025-11-29'
-cover_image: /content/images/post_1.jpg
----
+# 🚀 Mume Gateway API Documentation
 
 > **Your unified gateway to the world's most powerful AI models**
 
@@ -80,11 +75,11 @@ async_client = openai.AsyncOpenAI(
 #### JavaScript
 
 ```javascript
-import OpenAI from 'openai';
+import OpenAI from "openai";
 
 const client = new OpenAI({
-    apiKey: 'your-api-key',
-    baseURL: 'https://mume.ai/api/v1',
+  apiKey: "your-api-key",
+  baseURL: "https://mume.ai/api/v1",
 });
 ```
 
@@ -131,16 +126,16 @@ print(response.choices[0].message.content)
 #### JavaScript
 
 ```javascript
-import OpenAI from 'openai';
+import OpenAI from "openai";
 
 const client = new OpenAI({
-    apiKey: 'your-api-key',
-    baseURL: 'https://mume.ai/api/v1',
+  apiKey: "your-api-key",
+  baseURL: "https://mume.ai/api/v1",
 });
 
 const response = await client.chat.completions.create({
-    model: 'openai/gpt-4.1-mini',
-    messages: [{ role: 'user', content: '2+2=' }],
+  model: "openai/gpt-4.1-mini",
+  messages: [{role: "user", content: "2+2="}],
 });
 
 console.log(response.choices[0].message.content);
@@ -192,24 +187,24 @@ for chunk in response:
 #### JavaScript
 
 ```javascript
-import OpenAI from 'openai';
+import OpenAI from "openai";
 
 const client = new OpenAI({
-    apiKey: 'your-api-key',
-    baseURL: 'https://mume.ai/api/v1',
+  apiKey: "your-api-key",
+  baseURL: "https://mume.ai/api/v1",
 });
 
 const stream = await client.chat.completions.create({
-    model: 'openai/gpt-4.1-mini',
-    messages: [{ role: 'user', content: 'Write a poem about the moon.' }],
-    stream: true,
+  model: "openai/gpt-4.1-mini",
+  messages: [{role: "user", content: "Write a poem about the moon."}],
+  stream: true,
 });
 
 for await (const chunk of stream) {
-    const content = chunk.choices[0]?.delta?.content;
-    if (content) {
-        process.stdout.write(content);
-    }
+  const content = chunk.choices[0]?.delta?.content;
+  if (content) {
+    process.stdout.write(content);
+  }
 }
 ```
 
@@ -285,18 +280,18 @@ print(response.output_text.strip())
 #### JavaScript
 
 ```javascript
-import OpenAI from 'openai';
+import OpenAI from "openai";
 
 const client = new OpenAI({
-    apiKey: 'your-api-key',
-    baseURL: 'https://mume.ai/api/v1',
+  apiKey: "your-api-key",
+  baseURL: "https://mume.ai/api/v1",
 });
 
 const response = await client.responses.create({
-    model: 'openai/gpt-4.1-nano',
-    input: [
-        { type: 'message', content: 'Write a poem about the moon.', role: 'user' }
-    ],
+  model: "openai/gpt-4.1-nano",
+  input: [
+    {type: "message", content: "Write a poem about the moon.", role: "user"},
+  ],
 });
 
 console.log(response.output_text.trim());
@@ -341,16 +336,16 @@ print(response.output_text)
 #### JavaScript
 
 ```javascript
-import OpenAI from 'openai';
+import OpenAI from "openai";
 
 const client = new OpenAI({
-    apiKey: 'your-api-key',
-    baseURL: 'https://mume.ai/api/v1',
+  apiKey: "your-api-key",
+  baseURL: "https://mume.ai/api/v1",
 });
 
 const response = await client.responses.create({
-    model: 'openai/gpt-4.1-mini',
-    input: 'Write a poem about the moon.',
+  model: "openai/gpt-4.1-mini",
+  input: "Write a poem about the moon.",
 });
 
 console.log(response.output_text);
@@ -401,25 +396,25 @@ for chunk in response:
 #### JavaScript
 
 ```javascript
-import OpenAI from 'openai';
+import OpenAI from "openai";
 
 const client = new OpenAI({
-    apiKey: 'your-api-key',
-    baseURL: 'https://mume.ai/api/v1',
+  apiKey: "your-api-key",
+  baseURL: "https://mume.ai/api/v1",
 });
 
 const stream = await client.responses.create({
-    model: 'openai/gpt-4.1-nano',
-    input: [
-        { type: 'message', content: 'Write a poem about the moon.', role: 'user' }
-    ],
-    stream: true,
+  model: "openai/gpt-4.1-nano",
+  input: [
+    {type: "message", content: "Write a poem about the moon.", role: "user"},
+  ],
+  stream: true,
 });
 
 for await (const chunk of stream) {
-    if (chunk.type === 'response.output_text.delta') {
-        process.stdout.write(chunk.delta);
-    }
+  if (chunk.type === "response.output_text.delta") {
+    process.stdout.write(chunk.delta);
+  }
 }
 ```
 
@@ -542,7 +537,7 @@ client = openai.OpenAI(
     base_url="https://mume.ai/api/v1",
 )
 
-# 1. Define callable tools
+# 1. Define a list of callable tools for the model
 tools = [
     {
         "type": "function",
@@ -561,11 +556,12 @@ tools = [
     },
 ]
 
-# Your function implementation
+
 def get_horoscope(sign):
     return f"{sign}: Next Tuesday you will befriend a baby otter."
 
-# Create input list
+
+# Create a running input list we will add to over time
 input_list = [
     {
         "type": "message",
@@ -574,9 +570,9 @@ input_list = [
     }
 ]
 
-# 2. Make initial request with tools
+# 2. Prompt the model with tools defined
 response = client.responses.create(
-    model="openai/gpt-4.1-mini",
+    model="gpt-4.1-mini",
     tools=tools,
     input=input_list,
     stream=True,
@@ -587,39 +583,48 @@ final_tool_calls = {}
 for chunk in response:
     if chunk.type == "response.output_text.delta":
         print(chunk.delta, end="", flush=True)
+
     if chunk.type == "response.completed":
         final_tool_calls = chunk.response.output
 
-# 3. Process function calls and execute functions
 for item in final_tool_calls:
     if item.type == "function_call":
-        call_id = item.id or item.callId or item.call_id
-        
-        # Add the function call to input
-        input_list.append({
+        # 1. Get the ID safely
+        # The SDK object usually has 'id' or 'call_id'
+        current_call_id = getattr(item, "id", None) or getattr(item, "call_id", None)
+
+        # 2. Construct function_call item
+        # CRITICAL FIX: Use 'call_id' (snake_case) as the key
+        i = {
             "type": "function_call",
-            "id": call_id,
-            "callId": call_id,
+            "call_id": current_call_id,
             "name": item.name,
             "arguments": item.arguments,
-        })
+        }
+        input_list.append(i)
 
-        # Execute the function
         if item.name == "get_horoscope":
+            # 3. Execute the function logic
+            # Fix: Extract 'sign' from the arguments dict
             args = json.loads(item.arguments)
-            horoscope = get_horoscope(args["sign"])
-            
-            # 4. Add function result to input
-            input_list.append({
-                "type": "function_call_output",
-                "callId": call_id,
-                "id": call_id,
-                "output": json.dumps({"horoscope": horoscope}),
-            })
+            horoscope = get_horoscope(args.get("sign"))
 
-# 5. Get final response with function results
+            # 4. Construct function_call_output item
+            # CRITICAL FIX: Use 'call_id' (snake_case) as the key
+            i = {
+                "type": "function_call_output",
+                "call_id": current_call_id,
+                "output": json.dumps({"horoscope": horoscope}),
+            }
+            input_list.append(i)
+
+print("Final input:")
+print(input_list)
+print("\n\n")
+
 response = client.responses.create(
-    model="openai/gpt-4.1-mini",
+    model="gpt-4.1-mini",
+    # tools=tools,
     input=input_list,
     stream=True,
 )
@@ -632,106 +637,106 @@ for chunk in response:
 #### JavaScript
 
 ```javascript
-import OpenAI from 'openai';
+import OpenAI from "openai";
 
 const client = new OpenAI({
-    apiKey: 'your-api-key',
-    baseURL: 'https://mume.ai/api/v1',
+  apiKey: "your-api-key",
+  baseURL: "https://mume.ai/api/v1",
 });
 
 // 1. Define callable tools
 const tools = [
-    {
-        type: 'function',
-        name: 'get_horoscope',
-        description: "Get today's horoscope for an astrological sign.",
-        parameters: {
-            type: 'object',
-            properties: {
-                sign: {
-                    type: 'string',
-                    description: 'An astrological sign like Taurus or Aquarius',
-                },
-            },
-            required: ['sign'],
+  {
+    type: "function",
+    name: "get_horoscope",
+    description: "Get today's horoscope for an astrological sign.",
+    parameters: {
+      type: "object",
+      properties: {
+        sign: {
+          type: "string",
+          description: "An astrological sign like Taurus or Aquarius",
         },
+      },
+      required: ["sign"],
     },
+  },
 ];
 
 // Your function implementation
 function getHoroscope(sign) {
-    return `${sign}: Next Tuesday you will befriend a baby otter.`;
+  return `${sign}: Next Tuesday you will befriend a baby otter.`;
 }
 
 // Create input list
 const inputList = [
-    {
-        type: 'message',
-        role: 'user',
-        content: 'What is my horoscope? I am a Capricorn.',
-    },
+  {
+    type: "message",
+    role: "user",
+    content: "What is my horoscope? I am a Capricorn.",
+  },
 ];
 
 // 2. Make initial request with tools
 const stream = await client.responses.create({
-    model: 'openai/gpt-4.1-mini',
-    tools: tools,
-    input: inputList,
-    stream: true,
+  model: "openai/gpt-4.1-mini",
+  tools: tools,
+  input: inputList,
+  stream: true,
 });
 
 let finalToolCalls = [];
 
 for await (const chunk of stream) {
-    if (chunk.type === 'response.output_text.delta') {
-        process.stdout.write(chunk.delta);
-    }
-    if (chunk.type === 'response.completed') {
-        finalToolCalls = chunk.response.output;
-    }
+  if (chunk.type === "response.output_text.delta") {
+    process.stdout.write(chunk.delta);
+  }
+  if (chunk.type === "response.completed") {
+    finalToolCalls = chunk.response.output;
+  }
 }
 
 // 3. Process function calls and execute functions
 for (const item of finalToolCalls) {
-    if (item.type === 'function_call') {
-        const callId = item.id || item.callId || item.call_id;
+  if (item.type === "function_call") {
+    const callId = item.id || item.callId || item.call_id;
 
-        // Add the function call to input
-        inputList.push({
-            type: 'function_call',
-            id: callId,
-            callId: callId,
-            name: item.name,
-            arguments: item.arguments,
-        });
+    // Add the function call to input
+    inputList.push({
+      type: "function_call",
+      id: callId,
+      callId: callId,
+      name: item.name,
+      arguments: item.arguments,
+    });
 
-        // Execute the function
-        if (item.name === 'get_horoscope') {
-            const args = JSON.parse(item.arguments);
-            const horoscope = getHoroscope(args.sign);
+    // Execute the function
+    if (item.name === "get_horoscope") {
+      const args = JSON.parse(item.arguments);
+      const horoscope = getHoroscope(args.sign);
 
-            // 4. Add function result to input
-            inputList.push({
-                type: 'function_call_output',
-                callId: callId,
-                id: callId,
-                output: JSON.stringify({ horoscope: horoscope }),
-            });
-        }
+      // 4. Add function result to input
+      inputList.push({
+        type: "function_call_output",
+        callId: callId,
+        id: callId,
+        output: JSON.stringify({horoscope: horoscope}),
+      });
     }
+  }
 }
 
 // 5. Get final response with function results
 const finalStream = await client.responses.create({
-    model: 'openai/gpt-4.1-mini',
-    input: inputList,
-    stream: true,
+  model: "openai/gpt-4.1-mini",
+  input: inputList,
+  stream: true,
 });
 
 for await (const chunk of finalStream) {
-    if (chunk.type === 'response.output_text.delta') {
-        process.stdout.write(chunk.delta);
-    }
+  if (chunk.type === "response.output_text.delta") {
+    process.stdout.write(chunk.delta);
+  }
 }
 ```
 
@@ -776,17 +781,17 @@ print(response.output_text)
 #### JavaScript
 
 ```javascript
-import OpenAI from 'openai';
+import OpenAI from "openai";
 
 const client = new OpenAI({
-    apiKey: 'your-api-key',
-    baseURL: 'https://mume.ai/api/v1',
+  apiKey: "your-api-key",
+  baseURL: "https://mume.ai/api/v1",
 });
 
 const response = await client.responses.create({
-    model: 'openai/gpt-4.1-mini',
-    tools: [{ type: 'web_search' }],
-    input: 'news story india today',
+  model: "openai/gpt-4.1-mini",
+  tools: [{type: "web_search"}],
+  input: "news story india today",
 });
 
 console.log(response.output_text);
@@ -798,13 +803,13 @@ console.log(response.output_text);
 
 Mume Gateway gives you access to models from the world's leading AI providers. Simply use the `provider/model` format when specifying models.
 
-| Provider | Example Models |
-|:---------|:---------------|
-| **OpenAI** | `openai/gpt-4.1-mini`, `openai/gpt-4.1-nano`, `openai/gpt-5.1` |
-| **Anthropic** | `anthropic/claude-opus-4.5` |
-| **Google** | `google/gemini-3-pro-preview` |
-| **Mistral** | `mistralai/voxtral-small-24b-2507` |
-| **Moonshot** | `moonshotai/kimi-k2-thinking` |
+| Provider      | Example Models                                                 |
+| :------------ | :------------------------------------------------------------- |
+| **OpenAI**    | `openai/gpt-4.1-mini`, `openai/gpt-4.1-nano`, `openai/gpt-5.1` |
+| **Anthropic** | `anthropic/claude-opus-4.5`                                    |
+| **Google**    | `google/gemini-3-pro-preview`                                  |
+| **Mistral**   | `mistralai/voxtral-small-24b-2507`                             |
+| **Moonshot**  | `moonshotai/kimi-k2-thinking`                                  |
 
 > 📖 **Explore the full catalog:** [Mume AI Model Catalog](https://mume.ai/chat_models)
 
@@ -841,29 +846,29 @@ except openai.APIStatusError as e:
 #### JavaScript
 
 ```javascript
-import OpenAI from 'openai';
+import OpenAI from "openai";
 
 const client = new OpenAI({
-    apiKey: 'your-api-key',
-    baseURL: 'https://mume.ai/api/v1',
+  apiKey: "your-api-key",
+  baseURL: "https://mume.ai/api/v1",
 });
 
 try {
-    const response = await client.chat.completions.create({
-        model: 'openai/gpt-4.1-mini',
-        messages: [{ role: 'user', content: 'Hello!' }],
-    });
-    console.log(response.choices[0].message.content);
+  const response = await client.chat.completions.create({
+    model: "openai/gpt-4.1-mini",
+    messages: [{role: "user", content: "Hello!"}],
+  });
+  console.log(response.choices[0].message.content);
 } catch (error) {
-    if (error instanceof OpenAI.APIConnectionError) {
-        console.error('Connection error:', error.message);
-    } else if (error instanceof OpenAI.RateLimitError) {
-        console.error('Rate limit exceeded:', error.message);
-    } else if (error instanceof OpenAI.APIError) {
-        console.error(`API error: ${error.status} - ${error.message}`);
-    } else {
-        throw error;
-    }
+  if (error instanceof OpenAI.APIConnectionError) {
+    console.error("Connection error:", error.message);
+  } else if (error instanceof OpenAI.RateLimitError) {
+    console.error("Rate limit exceeded:", error.message);
+  } else if (error instanceof OpenAI.APIError) {
+    console.error(`API error: ${error.status} - ${error.message}`);
+  } else {
+    throw error;
+  }
 }
 ```
 
@@ -875,15 +880,15 @@ To use Mume Gateway, you'll need an API key. Here's how to get one:
 
 ### Steps to Generate Your API Key
 
-| Step | Action |
-|:----:|:-------|
+| Step  | Action                                                 |
+| :---: | :----------------------------------------------------- |
 | **1** | Navigate to [https://mume.ai/api](https://mume.ai/api) |
-| **2** | Sign in to your Mume account (or create one) |
-| **3** | Click the **"Generate API Key"** button |
-| **4** | Copy your key immediately and store it securely |
+| **2** | Sign in to your Mume account (or create one)           |
+| **3** | Click the **"Generate API Key"** button                |
+| **4** | Copy your key immediately and store it securely        |
 
 > ⚠️ **Important Security Notes**
-> 
+>
 > - 🚫 Never share your API key publicly or commit it to version control
 > - 🚫 Never expose your API key in client-side code
 > - ✅ Store your API key in environment variables or a secure secrets manager
@@ -951,7 +956,7 @@ api_key = os.getenv("MUME_API_KEY")
 **Load it in JavaScript** (using `dotenv`):
 
 ```javascript
-import 'dotenv/config';
+import "dotenv/config";
 const apiKey = process.env.MUME_API_KEY;
 ```
 
@@ -976,11 +981,11 @@ client = openai.OpenAI(
 #### JavaScript
 
 ```javascript
-import OpenAI from 'openai';
+import OpenAI from "openai";
 
 const client = new OpenAI({
-    apiKey: process.env.MUME_API_KEY,
-    baseURL: 'https://mume.ai/api/v1',
+  apiKey: process.env.MUME_API_KEY,
+  baseURL: "https://mume.ai/api/v1",
 });
 ```
 
@@ -1000,14 +1005,14 @@ curl https://mume.ai/api/v1/chat/completions \
 
 ## 💡 Support
 
-| Resource | Link |
-|:---------|:-----|
+| Resource             | Link                                                       |
+| :------------------- | :--------------------------------------------------------- |
 | 📚 **Model Catalog** | [https://mume.ai/chat_models](https://mume.ai/chat_models) |
-| 🔗 **API Base URL** | `https://mume.ai/api/v1` |
-| 🔑 **Get API Key** | [https://mume.ai/api](https://mume.ai/api) |
+| 🔗 **API Base URL**  | `https://mume.ai/api/v1`                                   |
+| 🔑 **Get API Key**   | [https://mume.ai/api](https://mume.ai/api)                 |
 
 ---
 
 **Built with ❤️ by the Mume team**
 
-*One API. Every model. Unlimited possibilities.*
+_One API. Every model. Unlimited possibilities._
