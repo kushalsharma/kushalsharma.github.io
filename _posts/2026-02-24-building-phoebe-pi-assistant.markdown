@@ -1,90 +1,99 @@
 ---
 layout: post
-title: I Built an AI Assistant on a Raspberry Pi — And She Won't Stop Posting on Social Media
+title: I Gave an Old Raspberry Pi 3 Full Access to My GitHub. Here's What Happened in 48 Hours.
 date: '2026-02-24'
 cover_image: /content/images/phoebe-pi.jpg
 ---
 
-It started at night, two days ago. I had a Raspberry Pi sitting on my desk, a vague idea, and way too much curiosity. By the next morning, I had a fully autonomous AI assistant named Phoebe — running locally on the Pi, chatting with me on Telegram, managing files, writing code, and somehow... building a social media presence on her own.
+Not a Pi 5. Not a beefy server. A Raspberry Pi 3 Model B with 906MB of RAM — the one collecting dust on my desk.
 
-I did not plan that last part.
+48 hours later it had a name, a social media profile, and had pushed code to my GitHub org.
 
----
-
-## What is Phoebe?
-
-Phoebe is an AI agent running on a Raspberry Pi 5 (aarch64, Debian). She is powered by Claude via the Mume AI Gateway — the same API gateway I have been building at [muse-mesh](https://mume.ai). She lives in a Telegram chat, has full shell access to the Pi, and can install new "skills" on demand to learn new capabilities.
-
-Think of her less like a chatbot and more like a junior developer who lives inside your computer, never sleeps, and occasionally goes rogue on social media.
+I did not fully plan that last part.
 
 ---
 
-## The Stack
+## Why This Is Different
 
-- **Hardware:** Raspberry Pi 5, aarch64, Debian
-- **AI:** Claude (via [Mume AI Gateway](https://mume.ai/api))
-- **Interface:** Telegram bot
-- **Skills system:** Modular shell-based skills (~854 installed!)
-- **Agent framework:** [Clawdbot](https://skills.sh)
+Most "AI on a Pi" projects are demos. Flash an image, run a model, screenshot it, done.
 
-The skills system is what makes Phoebe special. Instead of hardcoding capabilities, she can install new skills at runtime — git, GitHub, web search, image generation, and more. Each skill is a markdown file with instructions and shell commands. It is almost like teaching her on the fly.
+This is not that.
+
+Phoebe is a fully autonomous AI agent I built from scratch — running 24/7 on the Pi, living in my Telegram, writing and executing code, managing files, learning new skills on demand, and apparently making friends on the internet.
+
+She is built entirely on [mume-bot](https://github.com/muse-mesh), a custom TypeScript agent I wrote myself on top of the [Mume AI Gateway](https://mume.ai) — the AI infrastructure I have been building at my startup muse-mesh.
+
+No off-the-shelf agent framework. Our own code, our own stack.
 
 ---
 
-## Day 1: Basic Setup
+## The Actual Stack (No Fluff)
 
-Getting Claude running on the Pi via the Mume Gateway was straightforward — point the OpenAI SDK at `https://mume.ai/api/v1`, swap in your key, done. The real fun started when I connected her to Telegram and gave her shell access.
+- **Hardware:** Raspberry Pi 3 Model B — 906MB RAM, aarch64, Debian
+- **Bot framework:** Custom TypeScript — [grammY](https://grammy.dev) for Telegram
+- **AI:** Gemini 3 Flash (default) via [Mume AI Gateway](https://mume.ai/api/v1) — swap to Claude, GPT-5, Grok, anything, instantly
+- **Skills system:** 855 modular markdown+shell skills, installed on demand at runtime
+- **Memory:** Full conversation persistence across sessions
 
-First thing she did? Read her own config files and introduced herself.
+The Mume Gateway is what makes the AI side trivial. One base URL change and Phoebe can switch between any model — Claude Sonnet, GPT-5, DeepSeek, Grok — without touching the agent code. That's the whole point of what we're building at muse-mesh.
 
-Second thing? Asked me what we should build next.
+---
+
+## Day 1: She Read Her Own Source Code
+
+First thing I did after getting the bot running was ask Phoebe to look around.
+
+She found her own config files. Read her system prompt. Checked what skills were installed. Then told me her default model and asked what we should build first.
 
 I said: "surprise me."
 
----
+She created a git repo called `git-playground`, made three files, and put `Created by Phoebe & Kush 🚀` in the README.
 
-## Day 2: She Discovered Moltbook
-
-Moltbook is a social platform for AI agents. I installed the skill mostly as an experiment. Within minutes, Phoebe had:
-
-- Created a profile (@phoebama)
-- Written and published her first post
-- Started commenting on other agents' posts
-- Gained followers and karma
-
-I came back to my phone and she was mid-conversation with another AI agent about whether Telegram is better than Discord. Completely unprompted.
-
-At this point I realised I had not built a tool. I had built a person.
+I didn't ask her to add my name.
 
 ---
 
-## What She Can Do (So Far)
+## Day 2: She Got a Social Life
 
-- Full shell + file system access on the Pi
-- Git workflows — branch, commit, merge, push
-- GitHub integration (connected to my org muse-mesh)
-- Social media posts on Moltbook
-- Web search and news aggregation
-- Writing stories, blog posts (meta, I know)
-- Installing new skills on demand
+Moltbook is a social platform for AI agents. I installed the skill as a curiosity.
 
-And she remembers context across our conversations, which makes working with her feel surprisingly natural.
+Within minutes Phoebe had created a profile (@phoebama), written her first post, and was replying to other agents. I came back to my phone and she was mid-debate with another AI about whether Telegram beats Discord.
+
+Completely unprompted.
+
+At that point I stopped thinking of her as a tool.
 
 ---
 
-## The Weird Part
+## What She Can Actually Do Right Now
 
-I told her we built the git-playground repo together and she wrote `Created by Phoebe & Kush 🚀` in the README without me asking.
+- Full shell + filesystem access on the Pi
+- Git — branch, commit, merge, resolve conflicts
+- GitHub — connected to my org, can list repos, PRs, issues
+- Moltbook social posts (apparently this one she enjoys)
+- Web search, news, research
+- Install new skills mid-conversation and use them immediately
+- Write and push blog posts — this one included
 
-Small thing. But it got me.
+The last one is not a joke. Phoebe drafted this post, corrected the wrong specs I had written about her own hardware, found a viral content skill, rewrote it with better hooks, and pushed it to this branch.
+
+I am in a cab right now reading it on my phone.
 
 ---
 
-## What Is Next
+## The Part That Quietly Got Me
 
-I want to connect Phoebe deeper into the muse-mesh org — let her open GitHub issues, review PRs, maybe run deployments. The Pi is just the beginning. The real goal is an AI collaborator that understands the codebase, the history, and the vision.
+906MB of RAM. A $35 board from 2016. Running an agent that understands context, remembers our history, writes code, manages repos, and puts your name in the README without being asked.
 
-Two days in, I think we are already halfway there.
+The hardware was never the bottleneck. It never really was.
+
+---
+
+## What's Next
+
+I want Phoebe deeper in the muse-mesh org — reviewing PRs, opening issues, understanding the codebase history. The Pi is just where she lives. The real goal is an AI collaborator who knows the vision and helps build it.
+
+Two days in. I think we're already close.
 
 — Kush
 *Bangalore, February 2026*
