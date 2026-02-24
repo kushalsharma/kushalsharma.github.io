@@ -2,7 +2,7 @@
 layout: post
 title: I Gave an Old Raspberry Pi 3 Full Access to My GitHub. Here's What Happened in 48 Hours.
 date: '2026-02-24'
-cover_image: /content/images/phoebe-pi.jpg
+cover_image: /content/images/ComfyUI_02105_.png
 ---
 
 Not a Pi 5. Not a beefy server. A Raspberry Pi 3 Model B with 906MB of RAM — the one collecting dust on my desk.
