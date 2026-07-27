@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Not found" noindex>
+  <section class="mx-auto flex min-h-[60vh] max-w-5xl flex-col justify-center px-5 sm:px-8">
+    <p class="font-mono text-xs tracking-wider text-muted">
+      <span class="caret">404 — no route matched</span>
+    </p>
+    <h1 class="mt-6 text-4xl font-semibold tracking-tight sm:text-6xl">
+      This page doesn't <span class="gradient-text">exist</span>.
+    </h1>
+    <p class="mt-5 max-w-md text-muted">
+      It may have moved when I rebuilt this site. The writing index is probably where you were
+      heading.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/" class="rounded-xl border px-5 py-2.5 text-sm font-medium transition-colors hover:surface">
+        Home
+      </a>
+      <a href="/writing/" class="rounded-xl border px-5 py-2.5 text-sm font-medium transition-colors hover:surface">
+        Writing
+      </a>
+      <button
+        type="button"
+        data-palette-open
+        class="rounded-xl border px-5 py-2.5 text-sm font-medium transition-colors hover:surface"
+      >
+        Search ⌘K
+      </button>
+    </div>
+  </section>
+</BaseLayout>

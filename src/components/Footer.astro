@@ -1,0 +1,36 @@
+---
+import { SITE, SOCIAL } from "../consts";
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t">
+  <div class="mx-auto max-w-5xl px-5 py-12 sm:px-8">
+    <div class="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+      <div>
+        <p class="text-sm font-medium">{SITE.title}</p>
+        <p class="mt-1 max-w-xs text-sm text-muted">{SITE.tagline}</p>
+        <p class="mt-3 font-mono text-xs text-muted">{SITE.location}</p>
+      </div>
+
+      <nav class="grid grid-cols-2 gap-x-10 gap-y-2 text-sm sm:grid-cols-1">
+        {
+          SOCIAL.map((s) => (
+            <a
+              href={s.href}
+              target="_blank"
+              rel="me noreferrer"
+              class="link-underline w-fit text-muted transition-colors hover:text-[var(--fg)]"
+            >
+              {s.name}
+            </a>
+          ))
+        }
+        <a href="/rss.xml" class="link-underline w-fit text-muted transition-colors hover:text-[var(--fg)]">RSS</a>
+      </nav>
+    </div>
+
+    <p class="mt-10 font-mono text-xs text-muted">
+      © {year} {SITE.author} · Built with Astro
+    </p>
+  </div>
+</footer>

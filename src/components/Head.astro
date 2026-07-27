@@ -1,0 +1,118 @@
+---
+import { SITE } from "../consts";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article";
+  publishedTime?: Date;
+  tags?: string[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = SITE.description,
+  image = "/content/images/ComfyUI_02105_.webp",
+  type = "website",
+  publishedTime,
+  tags = [],
+  noindex = false,
+} = Astro.props;
+
+const pageTitle = title ? `${title} · ${SITE.title}` : `${SITE.title} — ${SITE.tagline}`;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).href;
+const ogImage = new URL(image, Astro.site ?? SITE.url).href;
+
+const personLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: SITE.author,
+  url: SITE.url,
+  jobTitle: "Founder, Muse Mesh",
+  description: SITE.description,
+  address: { "@type": "PostalAddress", addressLocality: "Bengaluru", addressCountry: "IN" },
+  sameAs: [
+    "https://github.com/kushalsharma",
+    "https://github.com/muse-mesh",
+    "https://x.com/rogerthatgame",
+    "https://www.linkedin.com/in/kushal12",
+    "https://stackoverflow.com/users/3858196/kushal-sharma",
+    "https://www.youtube.com/channel/UCNRsNrn2-87kfsh6hQ-O6-Q",
+  ],
+  knowsAbout: [
+    "AI infrastructure",
+    "LLM gateways",
+    "AI agents",
+    "Model Context Protocol",
+    "TypeScript",
+    "Android",
+  ],
+};
+
+const articleLd = publishedTime
+  ? {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: title,
+      description,
+      image: ogImage,
+      datePublished: publishedTime.toISOString(),
+      author: { "@type": "Person", name: SITE.author, url: SITE.url },
+      publisher: { "@type": "Person", name: SITE.author, url: SITE.url },
+      mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+      keywords: tags.join(", "),
+    }
+  : null;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title ?? SITE.title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content={SITE.title} />
+<meta property="og:locale" content="en_US" />
+{publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+{tags.map((t) => <meta property="article:tag" content={t} />)}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@rogerthatgame" />
+<meta name="twitter:creator" content="@rogerthatgame" />
+<meta name="twitter:title" content={title ?? SITE.title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<link rel="icon" href="/content/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" href="/content/favicon-196x196.png" sizes="196x196" />
+<link rel="apple-touch-icon" href="/content/apple-touch-icon-152x152.png" />
+<meta name="theme-color" content="#101418" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#fcfcfd" media="(prefers-color-scheme: light)" />
+
+<link rel="alternate" type="application/rss+xml" title={SITE.title} href="/rss.xml" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<link rel="preconnect" href="https://rsms.me" />
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+<script is:inline set:html={JSON.stringify(personLd)} type="application/ld+json" />
+{articleLd && <script is:inline set:html={JSON.stringify(articleLd)} type="application/ld+json" />}
+
+{/* Applied before paint so there is no theme flash. */}
+<script is:inline>
+  (() => {
+    const stored = localStorage.getItem("theme");
+    const dark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.classList.toggle("dark", dark);
+  })();
+</script>

@@ -1,0 +1,49 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  pubDate: Date;
+  tags?: string[];
+  featured?: boolean;
+}
+const { href, title, description, pubDate, tags = [], featured = false } = Astro.props;
+const dt = pubDate.toISOString().slice(0, 10);
+const human = pubDate.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+---
+
+<article data-reveal class="group relative border-b py-7 last:border-b-0">
+  <a href={href} class="block focus:outline-none">
+    <span class="absolute inset-0" aria-hidden="true"></span>
+
+    <div class="flex flex-wrap items-center gap-3 font-mono text-xs text-muted">
+      <time datetime={dt}>{human}</time>
+      {
+        featured && (
+          <span
+            class="rounded-full px-2 py-0.5 text-[10px] uppercase tracking-wider"
+            style="background: color-mix(in oklch, var(--color-accent) 16%, transparent); color: var(--color-accent);"
+          >
+            Featured
+          </span>
+        )
+      }
+    </div>
+
+    <h3 class="mt-2 text-lg font-semibold leading-snug tracking-tight transition-colors group-hover:text-[var(--color-accent)] sm:text-xl">
+      {title}
+    </h3>
+
+    <p class="mt-2 max-w-2xl text-sm leading-relaxed text-muted">{description}</p>
+
+    {
+      tags.length > 0 && (
+        <ul class="mt-3 flex flex-wrap gap-2">
+          {tags.map((t) => (
+            <li class="rounded-md border px-2 py-0.5 font-mono text-[11px] text-muted">{t}</li>
+          ))}
+        </ul>
+      )
+    }
+  </a>
+</article>

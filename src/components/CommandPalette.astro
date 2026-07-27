@@ -1,0 +1,146 @@
+---
+import { getCollection } from "astro:content";
+import { NAV, SOCIAL } from "../consts";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const items = [
+  ...NAV.map((n) => ({ kind: "Page", title: n.label, href: n.href, hint: "" })),
+  ...posts.map((p) => ({
+    kind: "Writing",
+    title: p.data.title,
+    href: `/writing/${p.id}/`,
+    hint: p.data.tags.join(" · "),
+  })),
+  ...SOCIAL.map((s) => ({ kind: "Link", title: s.name, href: s.href, hint: s.handle })),
+];
+---
+
+<div
+  data-palette
+  hidden
+  class="fixed inset-0 z-[90] hidden items-start justify-center px-4 pt-[12vh]"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Command palette"
+>
+  <div data-palette-backdrop class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+  <div
+    class="relative w-full max-w-xl overflow-hidden rounded-2xl border shadow-2xl"
+    style="background-color: var(--bg);"
+  >
+    <div class="flex items-center gap-3 border-b px-4">
+      <svg class="h-4 w-4 shrink-0 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path>
+      </svg>
+      <input
+        data-palette-input
+        type="text"
+        placeholder="Search posts and pages…"
+        autocomplete="off"
+        spellcheck="false"
+        class="w-full bg-transparent py-3.5 text-sm outline-none placeholder:text-[var(--fg-muted)]"
+      />
+      <kbd class="shrink-0 rounded border px-1.5 py-0.5 font-mono text-[10px] text-muted">esc</kbd>
+    </div>
+
+    <ul data-palette-list class="max-h-[52vh] overflow-y-auto p-2" role="listbox"></ul>
+
+    <p data-palette-empty hidden class="px-4 py-8 text-center text-sm text-muted">
+      Nothing matches that.
+    </p>
+  </div>
+</div>
+
+<script is:inline define:vars={{ items }}>
+  (() => {
+    const root = document.querySelector("[data-palette]");
+    if (!root) return;
+    const input = root.querySelector("[data-palette-input]");
+    const list = root.querySelector("[data-palette-list]");
+    const empty = root.querySelector("[data-palette-empty]");
+    const backdrop = root.querySelector("[data-palette-backdrop]");
+    let active = 0;
+    let results = items;
+
+    const score = (item, q) => {
+      const hay = `${item.title} ${item.kind} ${item.hint}`.toLowerCase();
+      if (!q) return 1;
+      if (hay.includes(q)) return 2;
+      // subsequence match so "phbe" still finds "phoebe"
+      let i = 0;
+      for (const ch of hay) if (ch === q[i]) i++;
+      return i === q.length ? 1 : 0;
+    };
+
+    const render = () => {
+      list.innerHTML = "";
+      empty.hidden = results.length > 0;
+      results.forEach((item, i) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <a href="${item.href}" data-idx="${i}" role="option" tabindex="-1"
+             class="flex items-center justify-between gap-4 rounded-lg px-3 py-2.5 text-sm transition-colors ${
+               i === active ? "surface" : ""
+             }">
+            <span class="truncate">${item.title}</span>
+            <span class="shrink-0 font-mono text-[10px] uppercase tracking-wider text-muted">${item.kind}</span>
+          </a>`;
+        list.appendChild(li);
+      });
+    };
+
+    const filter = () => {
+      const q = input.value.trim().toLowerCase();
+      results = items
+        .map((it) => ({ it, s: score(it, q) }))
+        .filter((r) => r.s > 0)
+        .sort((a, b) => b.s - a.s)
+        .map((r) => r.it);
+      active = 0;
+      render();
+    };
+
+    const open = () => {
+      root.hidden = false;
+      root.classList.replace("hidden", "flex");
+      document.body.style.overflow = "hidden";
+      input.value = "";
+      filter();
+      input.focus();
+    };
+
+    const close = () => {
+      root.hidden = true;
+      root.classList.replace("flex", "hidden");
+      document.body.style.overflow = "";
+    };
+
+    document.querySelectorAll("[data-palette-open]").forEach((b) => b.addEventListener("click", open));
+    backdrop.addEventListener("click", close);
+    input.addEventListener("input", filter);
+
+    document.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        root.hidden ? open() : close();
+        return;
+      }
+      if (root.hidden) return;
+      if (e.key === "Escape") return close();
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        active = (active + (e.key === "ArrowDown" ? 1 : -1) + results.length) % results.length;
+        render();
+        list.querySelector(`[data-idx="${active}"]`)?.scrollIntoView({ block: "nearest" });
+      }
+      if (e.key === "Enter" && results[active]) {
+        e.preventDefault();
+        window.location.href = results[active].href;
+      }
+    });
+  })();
+</script>

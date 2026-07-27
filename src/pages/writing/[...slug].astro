@@ -1,0 +1,125 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  return sorted.map((post, i) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      newer: i > 0 ? sorted[i - 1] : null,
+      older: i < sorted.length - 1 ? sorted[i + 1] : null,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+
+const human = post.data.pubDate.toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
+const words = (post.body ?? "").trim().split(/\s+/).length;
+const readingTime = `${Math.max(1, Math.round(words / 220))} min read`;
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.heroImage}
+  type="article"
+  publishedTime={post.data.pubDate}
+  tags={post.data.tags}
+>
+  <div
+    data-progress
+    class="fixed left-0 top-14 z-40 h-[2px] origin-left"
+    style="width:100%; transform: scaleX(0); background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2));"
+    aria-hidden="true"
+  >
+  </div>
+
+  <article>
+    <header class="mx-auto max-w-5xl px-5 pb-10 pt-16 sm:px-8 sm:pt-24">
+      <a href="/writing/" class="link-underline font-mono text-xs text-muted hover:text-[var(--fg)]">
+        ← writing
+      </a>
+
+      <h1 class="mt-6 max-w-3xl text-3xl font-semibold leading-[1.15] tracking-tight sm:text-5xl">
+        {post.data.title}
+      </h1>
+
+      <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-muted">
+        <time datetime={post.data.pubDate.toISOString().slice(0, 10)}>{human}</time>
+        {readingTime && <span>· {readingTime}</span>}
+        {post.data.tags.length > 0 && <span>· {post.data.tags.join(" · ")}</span>}
+      </div>
+
+      {
+        post.data.heroImage && (
+          <img
+            src={post.data.heroImage}
+            alt=""
+            loading="eager"
+            decoding="async"
+            class="mt-10 aspect-[2/1] w-full rounded-2xl border object-cover"
+          />
+        )
+      }
+    </header>
+
+    <div class="mx-auto max-w-5xl px-5 pb-16 sm:px-8">
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  <nav class="mx-auto max-w-5xl border-t px-5 py-10 sm:px-8">
+    <div class="grid gap-4 sm:grid-cols-2">
+      {
+        older && (
+          <a href={`/writing/${older.id}/`} class="group rounded-2xl border p-5 transition-colors hover:surface">
+            <p class="font-mono text-[11px] uppercase tracking-wider text-muted">← Older</p>
+            <p class="mt-2 font-medium leading-snug transition-colors group-hover:text-[var(--color-accent)]">
+              {older.data.title}
+            </p>
+          </a>
+        )
+      }
+      {
+        newer && (
+          <a
+            href={`/writing/${newer.id}/`}
+            class="group rounded-2xl border p-5 transition-colors hover:surface sm:col-start-2 sm:text-right"
+          >
+            <p class="font-mono text-[11px] uppercase tracking-wider text-muted">Newer →</p>
+            <p class="mt-2 font-medium leading-snug transition-colors group-hover:text-[var(--color-accent)]">
+              {newer.data.title}
+            </p>
+          </a>
+        )
+      }
+    </div>
+  </nav>
+</BaseLayout>
+
+<script is:inline>
+  (() => {
+    const bar = document.querySelector("[data-progress]");
+    if (!bar) return;
+    const onScroll = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
+    };
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
