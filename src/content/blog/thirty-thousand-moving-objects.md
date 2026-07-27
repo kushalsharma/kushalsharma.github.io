@@ -8,7 +8,9 @@ tags: ["frontend", "performance", "webgl", "dataviz"]
 ---
 Over a long weekend in March I built a thing called [Panopticon](https://panopticon-mm.web.app/): a photorealistic 3D globe in a browser with live satellites and live aircraft on it, a timeline you can scrub backwards and play at speed, and a weather layer.
 
-It is still running. As I write this it is tracking **16,114 satellites at 57 frames a second**, with layers for aircraft, military traffic, marine traffic, sea state, wildfire and weather sitting behind it. It is MIT licensed and it has CRT, night-vision and thermal shader modes, because I wanted it to feel like a terminal.
+It is still running. On my machine it holds **16,114 satellites at around 60 frames a second**, with layers for aircraft, military traffic, marine traffic, sea state, wildfire and weather behind it. It is MIT licensed, and it has CRT, night-vision and thermal shader modes, because I wanted it to feel like a terminal.
+
+On *your* machine, today, it would show an empty globe — and the reason is the most interesting thing about it. I come back to that at the end.
 
 Getting the planet on screen took an afternoon. There is a mature library for the globe, Google's photorealistic tiles drop straight into it, and you can be flying around a rendered Earth before you have finished your coffee.
 
@@ -76,6 +78,18 @@ Which produces a satisfying convergence: **the caching I needed for cost is the 
 There is no product here. It is a globe with things moving on it, and I built it because I wanted to see whether I could.
 
 What I did not expect is that it would still be up months later, holding sixteen thousand objects at a steady frame rate on an ordinary laptop. The performance work is the reason. A version of this that ran at eight frames a second would have been closed and forgotten by April.
+
+### Except it only works for me
+
+Going back to it now, both upstream feeds are gone.
+
+The flight API answers fine from a terminal — 200, in under a second — but it now returns `Access-Control-Allow-Origin` naming only its own domain, so every request from my page is refused by the browser before it is sent. It throws a network error rather than returning a status, which is why nothing in my logging ever said *"forbidden"*. And the satellite element catalogue now answers a cold request with 403.
+
+So a new visitor gets an empty globe. I get sixteen thousand satellites, because my browser still holds the catalogue it downloaded in March, in the IndexedDB layer I built to keep my tile bill down.
+
+**The cache I added to save money is the only reason the thing still runs at all.** That was never the plan. It is a real property of the design, and it is the strongest argument I have for the whole precompute-and-store approach: a system that keeps its own copy of what it has already seen degrades to *stale* when its upstreams disappear, instead of degrading to *broken*.
+
+The fix for both is the same and it is small — a server-side proxy that fetches upstream where CORS does not apply, caches, and serves my own page with credentials attached. I have the infrastructure for it. It also happens to solve the rate-limiting I was fighting on the original weekend, which I should have taken as a hint at the time.
 
 But almost everything in it turned out to be a rehearsal of the same idea I keep meeting elsewhere. Precompute the expensive part and keep it away from the thing that must stay responsive. Cache at the boundary where cost and latency are the same problem. Let the fast path read prepared data and never compute.
 
