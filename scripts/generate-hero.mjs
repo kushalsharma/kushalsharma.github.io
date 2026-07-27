@@ -125,6 +125,38 @@ const PROMPTS = {
     "five are tall and dense; the last two are flat and calm. Palette: deep navy " +
     "background, electric cyan short bars, warm amber tall bars, muted grey flat " +
     "bars. The tall middle bars fray into loose pixel blocks at their tops.",
+
+  // keywords: probe, voltage, dead chip, two hands on one problem
+  "multimeter-and-an-agent":
+    "A bold pixel-art square chip with pins along both sides as the central subject. " +
+    "One sharp pixel probe tip touches a pin from above; a thin bright line enters " +
+    "the chip from the other side. The chip's interior is dark and dead. Palette: " +
+    "deep charcoal background, warm amber chip outline, one hot red probe tip, " +
+    "electric cyan line. The chip's lower edge crumbles into scattered pixel blocks.",
+
+  // keywords: grid, modular panels, tiles joining, light cells
+  "cad-by-conversation":
+    "A bold pixel-art grid of square cells with visible dividers between them, like " +
+    "modular tiles butted together, each cell glowing a different warm colour. " +
+    "Palette: near-black background, bright white dividers, cells in amber, coral, " +
+    "mint and cyan. The grid dissolves into loose scattered pixel blocks at the " +
+    "right edge where the tiling runs out.",
+
+  // keywords: interrupted frame, tearing, periodic collision
+  "the-flicker-was-the-radar":
+    "A bold pixel-art rectangular screen shape, its image cleanly torn across the " +
+    "middle into two horizontally offset halves, as if caught mid-refresh. Faint " +
+    "concentric arcs sweep across it from one corner. Palette: dark teal background, " +
+    "bright lime screen, magenta arcs, one white tear line. Loose pixel blocks " +
+    "scatter from the tear.",
+
+  // keywords: one agent two interfaces, shared state
+  "phoebe-needed-a-second-face":
+    "Two bold pixel-art rounded rectangles side by side — one tall and narrow like a " +
+    "phone, one wide like a window — joined by a thick bright line running between " +
+    "them at the centre. Both contain the same simple glyph. Palette: deep violet " +
+    "background, cream shapes, hot amber connecting line. The outer edges of both " +
+    "shapes fray into loose pixel blocks.",
 };
 
 // ---------------------------------------------------------------------------
