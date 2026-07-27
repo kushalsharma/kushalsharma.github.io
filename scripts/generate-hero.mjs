@@ -174,6 +174,22 @@ const PROMPTS = {
     "shade. One bright measuring line runs across the top. Palette: deep indigo " +
     "background, warm amber solid bars, barely-visible dim violet ghost bars in the " +
     "gaps, one cyan measuring line. Scattered pixel blocks drift near the gaps.",
+
+  // keywords: one curve, many attempts, iteration on a small detail
+  "ten-rounds-on-a-rounded-corner":
+    "One bold pixel-art quarter-circle curve as the central subject, drawn in bright " +
+    "solid blocks, with many faint ghosted versions of the same curve offset slightly " +
+    "behind it at different radii, like failed attempts stacked up. Palette: deep " +
+    "charcoal background, hot coral solid curve, dim slate ghost curves, one cyan " +
+    "accent. The ghost curves dissolve into scattered pixel blocks.",
+
+  // keywords: discard and reuse, two paths one already built
+  "stop-innovating-go-look":
+    "Two bold pixel-art paths leaving a single point: one short path leading to a " +
+    "solid complete pixel-art block, one long winding path leading to a half-built " +
+    "crumbling block. The short path is bright, the winding one is dim. Palette: " +
+    "deep forest background, bright mint short path and solid block, dim rust winding " +
+    "path, scattered pixel blocks around the unfinished shape.",
 };
 
 // ---------------------------------------------------------------------------
