@@ -76,4 +76,4 @@ Then I will find out whether any of this survives contact with a soldering iron.
 
 ---
 
-*The KiCad project, Gerbers and full pin map are in [`claude-esp32`](https://github.com/kushalsharma) under `pcb/`. Built with KiCad 10 driven through the KiCad MCP server, signals autorouted with Freerouting.*
+*The KiCad project, Gerbers and full pin map are in [`esp32-buddy`](https://github.com/muse-mesh/esp32-buddy) under `pcb/`. Built with KiCad 10 driven through the KiCad MCP server, signals autorouted with Freerouting.*

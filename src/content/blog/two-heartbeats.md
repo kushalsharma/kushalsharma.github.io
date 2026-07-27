@@ -96,4 +96,4 @@ The most useful debugging tool in both cases was the same one: sit and watch the
 
 ---
 
-*Firmware and proxy are in [`claude-esp32`](https://github.com/kushalsharma) — `net/discovery.h` on the device, `buddy_proxy.py` on the other end.*
+*Firmware and proxy are in [`esp32-buddy`](https://github.com/muse-mesh/esp32-buddy) — `net/discovery.h` on the device, `buddy_proxy.py` on the other end.*

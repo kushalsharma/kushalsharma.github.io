@@ -82,11 +82,11 @@ export const PROJECTS = [
     accent: "violet",
   },
   {
-    name: "ESP32 + AI",
-    tagline: "Voice agents on a ₹400 microcontroller",
-    body: "Weekend work. Modular ESP32 nodes — microphone, speaker, camera, motors — talking to an agent over WiFi. Because the interesting part of AI is what happens when it can touch something.",
-    href: "/writing/",
-    meta: "In progress · C++",
+    name: "esp32-buddy",
+    tagline: "A pocket AI companion on a ₹400 microcontroller",
+    body: "An animated face on a 1.8\" screen you hold a button and talk to, a wireless camera eye over ESP-NOW, and tool calls that drive real pins. Two firmwares, an agent proxy, a custom carrier PCB and a printed shell. Runs on any OpenAI-spec endpoint.",
+    href: "https://github.com/muse-mesh/esp32-buddy",
+    meta: "Open source · C++ / Python",
     accent: "sky",
   },
 ] as const;

@@ -101,4 +101,4 @@ I would rather be six versions deep in my own mistakes when that lands than be r
 
 ---
 
-*Everything above is [`claude-esp32`](https://github.com/kushalsharma) — firmware for both units, the Python proxy, the KiCad project and the chassis. I build LLM infrastructure at [Muse Mesh](https://mume.ai) during the week.*
+*Everything above is [`esp32-buddy`](https://github.com/muse-mesh/esp32-buddy) — firmware for both units, the Python proxy, the KiCad project and the chassis. I build LLM infrastructure at [Muse Mesh](https://mume.ai) during the week.*
