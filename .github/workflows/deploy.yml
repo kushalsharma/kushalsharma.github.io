@@ -4,6 +4,10 @@ on:
   push:
     branches: [main, master]
   workflow_dispatch:
+  # Daily rebuild at 03:00 UTC (08:30 IST) so future-dated posts go live on
+  # their own pubDate without anyone pushing. See src/lib/posts.ts.
+  schedule:
+    - cron: "0 3 * * *"
 
 permissions:
   contents: read
