@@ -2,7 +2,7 @@
 title: "I have been building the same thing for ten years"
 description: "A JSON layout engine, a schema-to-code generator, two widget frameworks, and now an LLM gateway. Four companies, four stacks, one idea I did not notice until I wrote them down in order."
 heroImageCredit: "mume"
-pubDate: 2026-07-28
+pubDate: 2026-07-27
 heroImage: "/content/images/hero-same-thing-for-ten-years.webp"
 tags: ["infrastructure", "career", "android", "llm"]
 featured: true

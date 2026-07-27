@@ -2,7 +2,7 @@
 title: "I designed a PCB by talking to an agent"
 description: "KiCad driven through an MCP server, autorouted, ground poured, DRC clean at zero errors. Also: the four things it got wrong, which are the interesting part."
 heroImageCredit: "mume"
-pubDate: 2026-08-13
+pubDate: 2026-07-17
 heroImage: "/content/images/hero-pcb-with-an-agent.webp"
 tags: ["esp32", "hardware", "ai-agents", "kicad", "mcp"]
 ---

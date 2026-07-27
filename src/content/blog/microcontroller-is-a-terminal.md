@@ -3,7 +3,7 @@ title: "The microcontroller is a terminal. Your PC is the brain."
 description: "Version one ran everything on the ESP32 and was permanently out of memory. Version two moved the thinking to a proxy and got unbounded speech, streaming replies and swappable models for free."
 heroImageCredit: "mume"
 heroImage: "/content/images/hero-microcontroller-is-a-terminal.webp"
-pubDate: 2026-08-17
+pubDate: 2026-07-15
 tags: ["esp32", "hardware", "architecture", "ai-agents"]
 ---
 Version one of [my ESP32 companion](/writing/esp32-ai-buddy/) did everything on the device. Record audio, hold it in RAM, upload it, get a reply, play it.
@@ -21,6 +21,10 @@ That change unlocked four things I had been treating as separate hard problems.
 ## 1. Speech stopped having a maximum length
 
 When the device buffers audio in RAM, the longest thing you can say is a function of how much RAM you have left after everything else. On an ESP32 that is a genuinely tight budget, and every UI feature I added made the ceiling lower.
+
+This is what that looks like when it loses. The face goes to dead crosses and the status line reads *"…of memory (lower record"* — the device telling me, in its own voice, that it had run out.
+
+![The device with X eyes and a flat mouth — its "dead" face — and a status bar reading "of memory (lower record", the tail of an out-of-memory message.](/content/images/buddy-out-of-memory.webp)
 
 Streaming the microphone straight out over the socket removes the ceiling entirely. There is no buffer to overflow. You can talk for as long as you like, and the constraint moved from "how much memory does the device have" to "how long before you stop talking."
 

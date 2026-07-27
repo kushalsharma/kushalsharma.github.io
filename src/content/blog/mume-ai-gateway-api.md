@@ -2,7 +2,7 @@
 title: "Mume Gateway: one endpoint, 500+ models"
 description: "Point the OpenAI SDK at a different base URL and you have access to models from OpenAI, Anthropic, Google, Mistral and others — with per-user credits, quotas and billing behind it."
 pubDate: 2025-11-29
-updatedDate: 2026-08-09
+updatedDate: 2026-07-27
 heroImage: "/content/images/ComfyUI_02015_.webp"
 tags: ["llm", "api", "infrastructure", "mume"]
 featured: false

@@ -2,7 +2,7 @@
 title: "Your LLM gateway routes. Mine bills."
 description: "Routing between model providers is the commoditised half of the problem. The half nobody wants to build is knowing whose money you just spent — and it is the half that decides whether your AI product has a business model."
 heroImageCredit: "mume"
-pubDate: 2026-08-01
+pubDate: 2026-07-24
 heroImage: "/content/images/hero-gateways-route-mine-bills.webp"
 tags: ["llm", "infrastructure", "billing", "gateway"]
 ---

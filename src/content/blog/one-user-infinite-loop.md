@@ -2,7 +2,7 @@
 title: "What it costs you when one user writes an infinite loop"
 description: "Nobody has to be malicious. A retry policy, an agent that does not know when to stop, and a for-loop over a spreadsheet are enough. Here is the arithmetic, and what actually stops it."
 heroImageCredit: "mume"
-pubDate: 2026-08-05
+pubDate: 2026-07-22
 heroImage: "/content/images/hero-one-user-infinite-loop.webp"
 tags: ["llm", "infrastructure", "billing", "reliability"]
 ---
