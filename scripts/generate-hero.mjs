@@ -157,6 +157,23 @@ const PROMPTS = {
     "them at the centre. Both contain the same simple glyph. Palette: deep violet " +
     "background, cream shapes, hot amber connecting line. The outer edges of both " +
     "shapes fray into loose pixel blocks.",
+
+  // keywords: one symptom three sources, converging paths, hidden detail
+  "one-error-three-causes":
+    "Three distinct bold pixel-art paths of different colours entering from the left, " +
+    "top and bottom, all converging into one single identical grey square at the " +
+    "centre right. The three sources are vivid and distinguishable; the destination " +
+    "is flat and featureless. Palette: near-black background, one coral path, one " +
+    "cyan path, one amber path, dull grey square. Loose pixel blocks scatter at the " +
+    "convergence point.",
+
+  // keywords: measurement error, missing rows, a ruler that lies
+  "the-query-was-lying":
+    "A bold pixel-art vertical bar chart where several bars are clearly missing — " +
+    "gaps where bars should be, their faint outlines only just visible in a dimmer " +
+    "shade. One bright measuring line runs across the top. Palette: deep indigo " +
+    "background, warm amber solid bars, barely-visible dim violet ghost bars in the " +
+    "gaps, one cyan measuring line. Scattered pixel blocks drift near the gaps.",
 };
 
 // ---------------------------------------------------------------------------
