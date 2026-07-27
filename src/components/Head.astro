@@ -93,6 +93,10 @@ const articleLd = publishedTime
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 
+{/* The .ico is declared because the file isn't at the root, so the browser's
+    default /favicon.ico probe 404s without it. */}
+<link rel="icon" href="/content/favicon.ico" sizes="any" />
+<link rel="icon" href="/content/favicon-16x16.png" sizes="16x16" />
 <link rel="icon" href="/content/favicon-32x32.png" sizes="32x32" />
 <link rel="icon" href="/content/favicon-196x196.png" sizes="196x196" />
 <link rel="apple-touch-icon" href="/content/apple-touch-icon-152x152.png" />

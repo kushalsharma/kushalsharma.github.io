@@ -197,6 +197,31 @@ const PROMPTS = {
     "single thin bright line cuts horizontally through the whole scene. Palette: " +
     "near-black background, deep blue planet, hot amber and cyan orbiting dots, one " +
     "white cutting line. The densest cluster of dots dissolves into loose pixel blocks.",
+
+  // keywords: env var hijack, wrong door, same shape different destination
+  "openai-compatible-is-a-contract":
+    "Three identical pixel-art doorways standing side by side, all exactly the same " +
+    "shape and colour, but one bright pixel arrow curves away from the centre doorway " +
+    "and enters the one on the far right instead. Palette: deep slate background, " +
+    "warm cream doorways, hot orange arrow. The rightmost doorway dissolves into " +
+    "scattered loose pixel blocks.",
+
+  // keywords: pinout, header rows, safe and unsafe pins, reference
+  "esp32-pinout-cheat-sheet":
+    "Two vertical columns of chunky pixel squares running down the frame like the " +
+    "two pin headers of a circuit board, evenly spaced. Most squares are one calm " +
+    "colour; a scattered few glow hot red. Palette: near-black background, mint " +
+    "green pins, hot red warning pins, cream accents. The bottom of the right " +
+    "column breaks apart into loose scattered pixel blocks.",
+
+  // keywords: half a shape, missing counterpart, symmetry broken
+  "half-the-job":
+    "A single bold pixel-art circle split cleanly down the middle. The left half is " +
+    "solid, dense and fully formed; the right half is only a sparse outline of loose " +
+    "scattered pixel blocks, unfinished. Palette: deep navy background, bright amber " +
+    "solid half, faint dusty blue scattered half. Strong central composition, " +
+    "generous negative space.",
+
 };
 
 // ---------------------------------------------------------------------------
