@@ -93,6 +93,38 @@ const PROMPTS = {
     "with each other, one cyan and one hot pink. Where their peaks overlap the line " +
     "shatters into a burst of scattered pixel blocks. Palette: near-black background, " +
     "electric cyan, hot pink, one small warning-yellow accent at the collision.",
+
+  // keywords: delay, lag between event and record, settling, hourglass
+  "billing-after-the-answer":
+    "Two bold pixel-art squares side by side, identical in size. The left one is solid " +
+    "and complete; the right one is still assembling itself from loose pixel blocks " +
+    "drifting in from below, clearly lagging behind. A narrow gap of empty space " +
+    "between them. Palette: deep plum background, bright amber left square, pale " +
+    "gold assembling right square, one thin cyan line marking the gap.",
+
+  // keywords: wrong unit, mismatched sizes, counting, buckets
+  "rate-limiting-an-llm-api":
+    "A row of five pixel-art buckets or containers of wildly different sizes — one " +
+    "tiny, one enormous, the rest in between — but each marked with exactly one " +
+    "identical small tally mark above it. The absurd mismatch is the subject. " +
+    "Palette: dark slate background, warm orange containers, bright cyan tally " +
+    "marks. The largest container overflows into scattered pixel blocks.",
+
+  // keywords: severed connection, output into the void, meter still running
+  "cancelling-a-stream":
+    "A bold horizontal pixel-art stream of blocks flowing left to right, which is " +
+    "cleanly severed partway across — the right-hand portion continues flowing on " +
+    "into empty darkness, disconnected from anything. Palette: near-black background, " +
+    "bright lime stream on the left, the disconnected right portion fading to dim " +
+    "grey-green, one red pixel marking the cut.",
+
+  // keywords: timeline, weeks, small start large middle, calendar
+  "gateway-nine-weeks-to-production":
+    "Nine bold pixel-art vertical bars in a row of increasing then settling height, " +
+    "like a compressed timeline. The first two bars are small and bright; the middle " +
+    "five are tall and dense; the last two are flat and calm. Palette: deep navy " +
+    "background, electric cyan short bars, warm amber tall bars, muted grey flat " +
+    "bars. The tall middle bars fray into loose pixel blocks at their tops.",
 };
 
 // ---------------------------------------------------------------------------
