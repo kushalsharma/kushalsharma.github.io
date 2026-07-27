@@ -190,6 +190,13 @@ const PROMPTS = {
     "crumbling block. The short path is bright, the winding one is dim. Palette: " +
     "deep forest background, bright mint short path and solid block, dim rust winding " +
     "path, scattered pixel blocks around the unfinished shape.",
+  // keywords: globe, orbits, many moving points, one busy centre
+  "thirty-thousand-moving-objects":
+    "A bold pixel-art circle representing a planet, centred, with many small bright " +
+    "pixel dots scattered in arcing orbital paths around it, dense and busy. One " +
+    "single thin bright line cuts horizontally through the whole scene. Palette: " +
+    "near-black background, deep blue planet, hot amber and cyan orbiting dots, one " +
+    "white cutting line. The densest cluster of dots dissolves into loose pixel blocks.",
 };
 
 // ---------------------------------------------------------------------------
