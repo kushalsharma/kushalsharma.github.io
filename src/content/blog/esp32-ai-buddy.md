@@ -97,7 +97,7 @@ It started on a breadboard. It now has [a PCB I designed by talking to an agent]
 
 I should be honest about the timeline, because it is the part I find most interesting.
 
-Before this, the only thing I had ever flashed onto an ESP32 was WLED — someone else's binary, for driving LED strips. I had never written a line of embedded C for one.
+Before this, the only thing I had ever flashed onto an ESP32 was WLED — someone else's binary, for driving LED strips. I had poked at one in May, wiring up a small OLED and a battery divider while trying to make [a robot move](/writing/multimeter-and-an-agent/), but I had never written a complete firmware and finished it.
 
 The weekend before Buddy, I built a system monitor to learn the display: power draw, CPU temperature, memory, and a live WiFi scan with signal strengths. Boring on purpose. I wanted to find out how SPI worked, how the ST7735 wanted to be talked to, and how much of the chip I had to think about.
 
