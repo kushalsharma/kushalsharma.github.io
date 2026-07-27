@@ -64,13 +64,23 @@ const readingTime = `${Math.max(1, Math.round(words / 220))} min read`;
 
       {
         post.data.heroImage && (
-          <img
-            src={post.data.heroImage}
-            alt=""
-            loading="eager"
-            decoding="async"
-            class="mt-10 aspect-[2/1] w-full rounded-2xl border object-cover"
-          />
+          <figure class="mt-10">
+            <img
+              src={post.data.heroImage}
+              alt={post.data.heroImageAlt ?? ""}
+              loading="eager"
+              decoding="async"
+              class="aspect-[2/1] w-full rounded-2xl border object-cover"
+            />
+            {post.data.heroImageCredit === "mume" && (
+              <figcaption class="mt-2.5 text-right font-mono text-[11px] text-muted">
+                Generated with{" "}
+                <a href="https://mume.ai" class="link-underline" rel="noopener">
+                  Mume
+                </a>
+              </figcaption>
+            )}
+          </figure>
         )
       }
     </header>
