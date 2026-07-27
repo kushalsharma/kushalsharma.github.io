@@ -1,8 +1,9 @@
 ---
 title: "I designed a PCB by talking to an agent"
 description: "KiCad driven through an MCP server, autorouted, ground poured, DRC clean at zero errors. Also: the four things it got wrong, which are the interesting part."
+heroImageCredit: "mume"
 pubDate: 2026-08-13
-heroImage: "/content/images/esp32-buddy-carrier-pcb.webp"
+heroImage: "/content/images/hero-pcb-with-an-agent.webp"
 tags: ["esp32", "hardware", "ai-agents", "kicad", "mcp"]
 ---
 I have never designed a PCB before.
@@ -34,6 +35,8 @@ Then DRC. Then fix. Then DRC again.
 The thing that made this work is that **PCB design has a machine-checkable definition of wrong.** Design rule checking is a real oracle: clearance violations, unconnected nets, courtyard overlaps. The agent could propose something, get told precisely how it was broken, and iterate — which is exactly the loop where these tools are strongest and exactly the loop that most software tasks lack.
 
 Final state: 0 DRC errors, 8 warnings, all of them cosmetic and all on the mounting holes.
+
+![The actual board layout — 70 × 90 mm, two layers, ground poured on both sides. Header sockets for the DevKit sit in the middle, display at the top on the front face, everything else on the back.](/content/images/esp32-buddy-carrier-pcb.webp)
 
 ---
 

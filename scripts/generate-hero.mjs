@@ -24,58 +24,75 @@ const DEFAULT_MODEL = process.env.MUME_IMAGE_MODEL || "google/gemini-3-pro-image
 
 // A shared visual language, so the set reads as one publication rather than
 // seven unrelated pictures. Edit here, not per-prompt.
+//
+// Pixel art + abstract minimalism: one bold subject built from chunky visible
+// pixels, dispersing into scattered blocks at one edge. Works at thumbnail
+// size, survives any crop, and reads as a set regardless of subject matter.
 const STYLE = [
-  "Editorial tech illustration for an engineering blog.",
-  "Dark slate background (#101418), deep and matte, not black.",
-  "Restrained palette: one cyan accent (#22d3ee), one violet (#a78bfa), muted steel greys.",
-  "Clean geometric composition, generous negative space, subtle film grain.",
-  "Cinematic soft rim lighting. Shallow depth of field.",
-  "No text, no letters, no numbers, no logos, no watermarks, no UI chrome.",
-  "No human faces. Wide 16:9 crop.",
+  "Pixel art illustration in an abstract minimalist style.",
+  "Built from chunky visible square pixels and mosaic blocks with deliberate",
+  "low-resolution dithering and crisp hard edges — no soft blur, no gradients.",
+  "One single bold subject, centred, dissolving and dispersing into scattered",
+  "loose pixel blocks toward one edge.",
+  "Bold saturated flat colour fields, strong contrast, limited palette of three",
+  "or four colours only. Large areas of clean flat background.",
+  "Generous negative space. Confident, graphic, poster-like.",
+  "No text, no letters, no numbers, no logos, no watermarks, no UI elements.",
+  "Wide 16:9 composition.",
 ].join(" ");
 
+// Subjects are drawn from each post's own keywords, so the image carries a
+// hint of the content without being a literal diagram.
 const PROMPTS = {
+  // keywords: repetition, layers, one continuous line, ten years
   "same-thing-for-ten-years":
-    "Five translucent glass panels floating in a row, receding into depth, each " +
-    "etched with a different faint geometric lattice — but all five lattices are " +
-    "the same shape at different scales. A single thin cyan thread passes cleanly " +
-    "through all five, connecting them. The idea is repetition revealing itself as " +
-    "one continuous line.",
+    "Five identical pixel-art arch shapes standing in a row across the frame, each " +
+    "one larger than the last, evenly spaced. One single bright horizontal line runs " +
+    "straight through all five arches, connecting them end to end. Palette: deep " +
+    "indigo background, electric cyan line, warm amber arches. The largest arch on " +
+    "the right breaks apart into loose scattered pixel blocks.",
 
+  // keywords: meter, credits, tokens, routing, billing
   "gateways-route-mine-bills":
-    "A single luminous cyan conduit entering from the left and fanning into many " +
-    "thin threads on the right. At the fan-out point sits a precise brass-and-glass " +
-    "measuring instrument, like an antique flow meter, catching the light. The " +
-    "meter is the subject; the routing is background.",
+    "A bold pixel-art gauge or meter dial as the central subject, its needle sharp " +
+    "and confident. Many thin pixel lines converge into it from the left and fan out " +
+    "to the right. Palette: deep teal background, hot magenta needle, cream and " +
+    "cyan lines. The fanning lines break into scattered pixel blocks at the right edge.",
 
+  // keywords: runaway loop, spiral, cost, one bad actor
   "one-user-infinite-loop":
-    "A single glowing violet thread coiling into a tight runaway spiral that grows " +
-    "denser and hotter toward the centre, spilling light. Around it, orderly parallel " +
-    "cyan threads run straight and calm and unaffected. Tension between one thing " +
-    "out of control and everything else fine.",
+    "A tight spiral of pixel blocks coiling inward, growing hotter and denser toward " +
+    "the centre — burning orange and red at the core. Around it, calm orderly rows of " +
+    "flat blue pixel squares, completely unaffected. Palette: pale blue background, " +
+    "orange-red spiral, deep navy. Sharp contrast between chaos and order.",
 
+  // keywords: robot face, two eyes, small device, friendly
   "esp32-ai-buddy":
-    "A small friendly rectangular device on a dark workbench, a soft glowing cyan " +
-    "screen showing two simple luminous dots like calm eyes. Tiny electronic modules " +
-    "and fine jumper wires arranged neatly around it. Warm, intimate, macro lens, " +
-    "shallow focus. Affectionate rather than technical.",
+    "A small friendly pixel-art robot head, square, with two large simple glowing " +
+    "square eyes. Retro game sprite energy, blocky and charming. Palette: warm cream " +
+    "background, mint green robot, hot coral eyes, charcoal outline. The bottom edge " +
+    "of the robot dissolves into loose falling pixel blocks.",
 
+  // keywords: circuit board, traces, sockets, copper
   "pcb-with-an-agent":
-    "A green-black printed circuit board seen at a low angle, copper traces catching " +
-    "cyan light, header sockets in crisp rows. Faint violet wireframe schematic lines " +
-    "hover a few centimetres above the physical board, slightly misaligned with it — " +
-    "the plan and the object not quite agreeing.",
+    "Abstract pixel-art circuit board traces — bold right-angled pathways branching " +
+    "across the frame with square pads at the junctions. Palette: deep forest green " +
+    "background, bright gold traces, one accent of electric blue. The traces fragment " +
+    "and scatter into loose pixel blocks toward the upper right.",
 
+  // keywords: small device, big cloud, thin link between them
   "microcontroller-is-a-terminal":
-    "Left: a small dark minimal device, nearly empty inside, a single cyan light. " +
-    "Right: a large luminous violet volumetric cloud of dense structure. Between them " +
-    "one clean taut horizontal beam of light. Weight and complexity obviously live on " +
-    "the right; the left is deliberately, elegantly hollow.",
+    "Left: one small solid pixel-art square, minimal, almost empty. Right: a large " +
+    "dense billowing pixel cloud of many blocks. Between them a single thin bright " +
+    "horizontal line. Palette: charcoal background, pale cyan small square, violet " +
+    "and magenta cloud. Obvious imbalance of visual weight, left to right.",
 
+  // keywords: two waveforms, out of phase, collision, break
   "two-heartbeats":
-    "Two overlapping pulse waveforms in cyan and violet running horizontally across " +
-    "a dark field, slightly out of phase. Where their peaks collide the line breaks " +
-    "and scatters into fragments of light. Rhythmic, clinical, a little ominous.",
+    "Two bold pixel-art pulse waveforms running horizontally, slightly out of phase " +
+    "with each other, one cyan and one hot pink. Where their peaks overlap the line " +
+    "shatters into a burst of scattered pixel blocks. Palette: near-black background, " +
+    "electric cyan, hot pink, one small warning-yellow accent at the collision.",
 };
 
 // ---------------------------------------------------------------------------

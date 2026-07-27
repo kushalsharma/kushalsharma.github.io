@@ -1,6 +1,8 @@
 ---
 title: "I built a pocket AI companion out of a ₹400 microcontroller"
 description: "An ESP32 with an animated face, a microphone, a speaker and a wireless camera eye. You hold a button and talk to it, and it can call tools that move real hardware."
+heroImageCredit: "mume"
+heroImage: "/content/images/hero-esp32-ai-buddy.webp"
 pubDate: 2026-08-09
 tags: ["esp32", "hardware", "ai-agents", "buddy"]
 featured: true

@@ -1,6 +1,8 @@
 ---
 title: "The microcontroller is a terminal. Your PC is the brain."
 description: "Version one ran everything on the ESP32 and was permanently out of memory. Version two moved the thinking to a proxy and got unbounded speech, streaming replies and swappable models for free."
+heroImageCredit: "mume"
+heroImage: "/content/images/hero-microcontroller-is-a-terminal.webp"
 pubDate: 2026-08-17
 tags: ["esp32", "hardware", "architecture", "ai-agents"]
 ---

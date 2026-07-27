@@ -1,6 +1,8 @@
 ---
 title: "Two heartbeats killed my WebSocket every thirty seconds"
 description: "A healthy link that dropped like clockwork, and a device that would happily retry a dead IP address forever. Two connection bugs where the fix was removing something, not adding it."
+heroImageCredit: "mume"
+heroImage: "/content/images/hero-two-heartbeats.webp"
 pubDate: 2026-08-21
 tags: ["esp32", "debugging", "websockets", "networking"]
 ---
